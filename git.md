@@ -9,18 +9,23 @@
 
 1. - `git config --list `  
 展示所有的配置
-   
+</br>
+
    - `git config --list --local`  
 展示计算机当前repository下的所有配置
-   
+</br>   
+
    - `git config -Mark Text-list --global`  
 展示计算机当前用户下的所有配置
-   
+</br>  
+
    - `git config --list --system`  
 展示计算机下的所有配置
-   
+</br>  
+
    - `git config --global user.name`  
 展示计算机当前用户下的某一配置，可以是其他的`--local`或`--system`
+</br>
 
 2. - `git config --local user.name 'username'`
 `git config --local user.email 'email@email.com'`
@@ -35,7 +40,8 @@
 
 1. - `git log`  
 查看版本演变史，及commit信息  
-   
+</br>  
+
    - `git log -av --oneline -n2 --graph`
 `-a`显示所有的commit，包括local和remote
 `-v`显示详细信息
@@ -47,6 +53,7 @@
 
 1. `git add filename`  
 添加或更新文件到暂存区  
+</br>
 
 2. `git add -u`
 更新所有已追踪（在暂存区）的文件
@@ -55,22 +62,24 @@
 
 1. `git commit -m 'message'`  
 提交暂存区文件。如果还有未`git add`的文件，需要先提交到暂存区  
+</br>
 
 2. `git commit --amend`
 修改最新一次commit的message
+</br>
 
 3. `git commit rebase -i commit_name`
 交互式修改以前的commit
 commit_name为需要修改的commit的最近邻上一次的commit
-   
+  
 ![rebase](assets/img/git/git_branch_rebase_1.png)
 如图，想要rebase a7dc118和4292430，commit_name需要为22d7f8
 之后会让你修改文件内容。
 
 #### 修改连续的commit
-   
+
 ##### 修改commit message
-   
+
 ![修改连续的commit](/assets/img/git/git_branch_rebase_2.png)
 `pick`表示挑出来但不修改
 `reword`表示接下来需要修改commit的message内容  
@@ -81,7 +90,7 @@ commit_name为需要修改的commit的最近邻上一次的commit
 保存提交就OK了
    
 ##### 合并连续的commit
-   
+
 合并四个commit为一个commit
 ![合并四个commit为一个commit](assets/img/git/git_branch_rebase_4.png)
    
@@ -94,9 +103,9 @@ commit_name为需要修改的commit的最近邻上一次的commit
 接下来保存提交就OK了
    
 #### 修改不连续的commitd
-   
+
 ##### 合并不连续的commit
-   
+
 如图，合并间隔的commit
 ![合并间隔的commit](assets/img/git/git_branch_rebase_7.png)
    
@@ -129,6 +138,7 @@ commit_name为需要修改的commit的最近邻上一次的commit
 删除工作目录和暂存区的文件，相当于执行了二步：
 `rm filename`
 `git rm --cached old_filename`  
+</br>
 
 2. `git rm --cached filename`
 删除暂存区的文件
@@ -141,22 +151,27 @@ commit_name为需要修改的commit的最近邻上一次的commit
 
 1. `git branch`or`git branch -av`
 显示分支，`-v`：详尽的显示;`-a`：显示local和remot的
+</br>
 
 2. `git branch new_branch commit|old_branch`
 从commit或branch新建分支
+</br>
 
 3. `git branch -d branch_name`or`git branch -D branch_name`
 删除分支，如果`-d`报错，需要用`-D`强制删除
 
 ### git checkout
 
+
 1. `git checkout commit|branch`
 切换到commit或分支
+</br>
 
-2. `git checkout -b new_branch commit|old_branch`
+1. `git checkout -b new_branch commit|old_branch`
 从commit或branch新建分支new_branch，并切换过去
+</br>
 
-3. `git checkout -- filename1 filename2...`
+1. `git checkout -- filename1 filename2...`
 使工作区恢复成暂存区一样。就是丢弃工作区指定文件使之和暂存区一样
 暂存区--指定覆盖->工作区
 
@@ -167,12 +182,15 @@ commit_name为需要修改的commit的最近邻上一次的commit
 
 1. `git diff`
    比较工作区和暂存区的区别
+</br>
 
 2. `git diff --cached`
 比较暂存区和最新一次commit的区别
+</br>
 
 3. `git diff commit1 commit2`
 比较两个commit的区别
+</br>
 
 4. `git diff branch1 branch2`
 比较两个branch的区别，归根结底还是比较两个分支HEAD，也就是最新的那次commit的区别
@@ -182,14 +200,17 @@ commit_name为需要修改的commit的最近邻上一次的commit
 1. `git reset HEAD`
 使暂存区恢复成HEAD一样。就是清空暂存区使之和HEAD一样
 HEAD--覆盖->暂存区
+</br>
 
 2. `git reset HEAD -- filename1 filename1...`
 使暂存区恢复成HEAD一样。就是丢弃暂存区指定文件使之和HEAD一样
 HEAD--指定覆盖->暂存区
+</br>
 
 3. `git reset --hard commit`
 使当前分支HEAD回退到分支中的某一commit，并丢弃之后（最新）的所有commit。暂存区和工作区也同步改变。
 丢弃分支中的某些commit，回退到先前的commit
+</br>
 
 4. `git reset --hard HEAD`
 使当前分支HEAD回退到分支中的HEAD，就是原地起跳的意思。产生的效果就是：暂存区和工作区都变为HEAD的内容。
@@ -200,12 +221,15 @@ HEAD--指定覆盖->暂存区
 1. `git stash`
 把当前工作区和暂存区的文件临时保存到一个地方，方便之后再切换回来。
 比如工作区还有正在修改的文件，没有保存到暂存区。这时需要切换到另一个分支工作，可以先`git stash`，再切换到其他分支，完成后，再切换回来，恢复内容。
+</br>
 
 2. `git stash list`
 列出所有的临时保存
+</br>
 
 3. `git stash apply`
 把临时保存的工作区和暂存区内容恢复到当前分支上，并且临时保存的记录还在，可反复使用。使用`git stash list`仍可看到。
+</br>
 
 4. `git stash pop`
 把临时保存的工作区和暂存区内容恢复到当前分支上，但是删除临时保存的内容。
@@ -214,6 +238,7 @@ HEAD--指定覆盖->暂存区
 
 1. `git cat-file -t 散列值`
 常看该散列值所属的类型
+</br>
 
 2. `git cat-file -p 散列值`
 常看该散列值所属的内容
