@@ -322,7 +322,7 @@ commit之中包含了各种属性，最重要的是包含了一棵树。可以�
 **备份地址-clone from->源仓库**
 
 ### 提交到/path/to/.git
-`git remote push_name file:///path/backup/backup_repository.git`
+`git remote add push_name file:///path/backup/backup_repository.git`
 **源仓库-push to->备份仓库**
 `git push --set-upstream push_name push_branch_name`
 如果push_branch_name和当前分支一样，则可以不输
