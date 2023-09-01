@@ -326,3 +326,8 @@ commit之中包含了各种属性，最重要的是包含了一棵树。可以�
 **源仓库-push to->备份仓库**
 `git push --set-upstream push_name push_branch_name`
 如果push_branch_name和当前分支一样，则可以不输
+
+
+## Tip
+- 目前只有`git merge`是需要`remote_name/branch_name`这种方式的，其他都是`remote_name branch_name`。
+例如：`git merge origin/main`;`git push backup main`
